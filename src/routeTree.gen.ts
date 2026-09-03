@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as PgIdRouteImport } from './routes/pg.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PgIdRoute = PgIdRouteImport.update({
+  id: '/pg/$id',
+  path: '/pg/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
+  '/map': typeof MapRoute
+  '/search': typeof SearchRoute
+  '/pg/$id': typeof PgIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
+  '/map': typeof MapRoute
+  '/search': typeof SearchRoute
+  '/pg/$id': typeof PgIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/favorites': typeof FavoritesRoute
+  '/map': typeof MapRoute
+  '/search': typeof SearchRoute
+  '/pg/$id': typeof PgIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/compare' | '/favorites' | '/map' | '/search' | '/pg/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/compare' | '/favorites' | '/map' | '/search' | '/pg/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/favorites'
+    | '/map'
+    | '/search'
+    | '/pg/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
+  FavoritesRoute: typeof FavoritesRoute
+  MapRoute: typeof MapRoute
+  SearchRoute: typeof SearchRoute
+  PgIdRoute: typeof PgIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pg/$id': {
+      id: '/pg/$id'
+      path: '/pg/$id'
+      fullPath: '/pg/$id'
+      preLoaderRoute: typeof PgIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
+  FavoritesRoute: FavoritesRoute,
+  MapRoute: MapRoute,
+  SearchRoute: SearchRoute,
+  PgIdRoute: PgIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
