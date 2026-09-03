@@ -78,7 +78,7 @@ const REVIEW_TEXTS = [
   "Friendly crowd of students from nearby colleges. The common area is a good spot to work on group projects.",
 ];
 
-const NAMES = [
+const NAMES: [string, string][] = [
   ["Aravind K.", "AK"],
   ["Sneha R.", "SR"],
   ["Mohammed Irfan", "MI"],
